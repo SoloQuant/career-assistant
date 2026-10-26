@@ -1,0 +1,31 @@
+// PWA配置：支持桌面安装
+export const manifest = {
+  name: '职业发展助手',
+  short_name: '职业助手',
+  description: '大学生职业发展管理平台',
+  start_url: '/',
+  display: 'standalone',
+  background_color: '#ffffff',
+  theme_color: '#1890ff',
+  icons: [
+    {
+      src: '/icon-192.png',
+      sizes: '192x192',
+      type: 'image/png'
+    },
+    {
+      src: '/icon-512.png',
+      sizes: '512x512',
+      type: 'image/png'
+    }
+  ]
+};
+
+// 注册Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registered'))
+      .catch(err => console.log('SW registration failed'));
+  });
+}
