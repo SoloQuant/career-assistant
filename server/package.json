@@ -1,0 +1,14 @@
+{
+  "name": "career-assistant-server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/common": "^10.0.0",
+    "@prisma/client": "^5.7.0",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.0"
+  }
+}
