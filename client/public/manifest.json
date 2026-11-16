@@ -1,31 +1,24 @@
-// PWA配置：支持桌面安装
-export const manifest = {
-  name: '职业发展助手',
-  short_name: '职业助手',
-  description: '大学生职业发展管理平台',
-  start_url: '/',
-  display: 'standalone',
-  background_color: '#ffffff',
-  theme_color: '#1890ff',
-  icons: [
+{
+  "name": "职业发展助手",
+  "short_name": "职业发展助手",
+  "description": "大学生职业发展与求职管理系统",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0f1a",
+  "theme_color": "#06b6d4",
+  "icons": [
     {
-      src: '/icon-192.png',
-      sizes: '192x192',
-      type: 'image/png'
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' width='192' height='192'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2322d3ee'/><stop offset='100%25' stop-color='%230284c7'/></linearGradient></defs><rect width='192' height='192' rx='36' fill='url(%23g)'/><text x='96' y='124' text-anchor='middle' font-family='PingFang SC,Microsoft YaHei,sans-serif' font-size='96' font-weight='700' fill='white'>职</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     },
     {
-      src: '/icon-512.png',
-      sizes: '512x512',
-      type: 'image/png'
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2322d3ee'/><stop offset='100%25' stop-color='%230284c7'/></linearGradient></defs><rect width='512' height='512' rx='96' fill='url(%23g)'/><text x='256' y='330' text-anchor='middle' font-family='PingFang SC,Microsoft YaHei,sans-serif' font-size='256' font-weight='700' fill='white'>职</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
-};
-
-// 注册Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('SW registered'))
-      .catch(err => console.log('SW registration failed'));
-  });
 }
