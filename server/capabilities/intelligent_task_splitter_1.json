@@ -1,0 +1,43 @@
+{
+  "id": "intelligent_task_splitter_1",
+  "pluginKey": "@official-plugins/ai-text-to-json",
+  "pluginVersion": "1.0.26",
+  "name": "智能任务拆分工具",
+  "description": "输入总任务名称和描述，自动拆分为阶段性里程碑和具体子任务，输出结构化JSON数据。",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "task_description": {
+        "type": "string",
+        "description": "总任务详细描述，包含目标、要求、时间约束等信息"
+      },
+      "task_name": {
+        "type": "string",
+        "description": "总任务名称"
+      }
+    },
+    "required": [
+      "task_name",
+      "task_description"
+    ]
+  },
+  "formValue": {
+    "modelParams": {
+      "maxTokens": 8192,
+      "temperature": 0.5
+    },
+    "prompt": "你是一位专业的项目管理专家，擅长将复杂任务拆分为可执行的阶段性里程碑和具体子任务。\n\n请对以下总任务进行拆分：\n总任务名称：{{input.task_name}}\n总任务描述：{{input.task_description}}\n\n拆分要求：\n1. 首先拆分为3-8个里程碑（milestones），每个里程碑对应项目的一个重要阶段或交付节点，逻辑清晰、顺序合理\n2. 每个里程碑下拆分为3-10个具体子任务（subTasks），子任务需要明确、可执行、颗粒度适中\n3. 每个子任务需要预估合理的完成时间（estimatedMinutes），单位为分钟，数值在15-480之间（0.25小时到8小时）\n4. 所有子任务完成后应能覆盖整个里程碑的目标，所有里程碑完成后应能覆盖整个总任务的目标\n5. 未明确的信息请根据任务类型合理推断，确保拆分结果具有实际可执行性",
+    "jsonStructure": [
+      {
+        "paramType": "Array",
+        "paramDescription": "里程碑列表，items schema: {name: string(里程碑名称), description: string(里程碑详细描述), subTasks: Array(子任务列表，items schema: {name: string(子任务名称), description: string(子任务详细描述), estimatedMinutes: Number(子任务预估完成时间，单位分钟)})}",
+        "name": "milestones"
+      }
+    ],
+    "modelID": "2015"
+  },
+  "createdAt": 1788830994568,
+  "updatedAt": 1788830994568,
+  "createdBy": 7591401352056622298
+}

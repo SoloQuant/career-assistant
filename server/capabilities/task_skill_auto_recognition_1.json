@@ -1,0 +1,48 @@
+{
+  "id": "task_skill_auto_recognition_1",
+  "pluginKey": "@official-plugins/ai-text-to-json",
+  "pluginVersion": "1.0.26",
+  "name": "任务技能自动识别",
+  "description": "输入总任务名称和描述以及里程碑子任务结构，返回每个层级（总任务/每个里程碑/每个子任务）自动匹配到的技能名称数组（从给定的45个技能库中选择）。",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "task_info": {
+        "type": "string",
+        "description": "总任务名称、描述以及里程碑子任务结构信息"
+      },
+      "skill_library": {
+        "type": "string",
+        "description": "45个技能库的完整列表内容"
+      }
+    },
+    "required": [
+      "task_info",
+      "skill_library"
+    ]
+  },
+  "formValue": {
+    "prompt": "你是一位专业的任务技能匹配专家。请根据以下任务信息和技能库，为每个层级（总任务、每个里程碑、每个子任务）自动匹配最适合的技能名称数组，技能必须从给定的技能库中选择。\n\n任务信息：\n{{input.task_info}}\n\n技能库：\n{{input.skill_library}}\n\n匹配规则：\n1. 为总任务匹配最相关的技能集合\n2. 为每个里程碑分别匹配对应的技能集合\n3. 为每个子任务分别匹配对应的技能集合\n4. 技能必须严格从提供的技能库中选择，不得生成库外技能\n5. 每个层级的技能数组可包含多个相关技能，按相关性排序\n6. 确保匹配的技能与任务内容高度相关",
+    "jsonStructure": [
+      {
+        "paramType": "Array",
+        "paramDescription": "总任务匹配的技能名称数组，items schema: string(技能名称)",
+        "name": "overall_task_skills"
+      },
+      {
+        "name": "milestones",
+        "paramType": "Array",
+        "paramDescription": "里程碑列表，items schema: {milestone_name: string(里程碑名称), skills: Array<string>(该里程碑匹配的技能名称数组), subtasks: Array<{subtask_name: string(子任务名称), skills: Array<string>(该子任务匹配的技能名称数组)}>}"
+      }
+    ],
+    "modelID": "2015",
+    "modelParams": {
+      "maxTokens": 8192,
+      "temperature": 0.5
+    }
+  },
+  "createdAt": 1788833216694,
+  "updatedAt": 1788833216694,
+  "createdBy": 7591401352056622298
+}
